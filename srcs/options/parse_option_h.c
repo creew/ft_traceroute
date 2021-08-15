@@ -14,6 +14,10 @@
 
 int	parse_option_h(int argc, char **argv, char *arg, int *i)
 {
+	(void)argc;
+	(void)argv;
+	(void)arg;
+	(void)i;
 	print_usage(g_ft_traceroute.exec_name, 2);
 	return (1);
 }

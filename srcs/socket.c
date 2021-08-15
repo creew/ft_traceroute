@@ -14,5 +14,6 @@
 
 int init_socket(char is_icmp)
 {
-
+	(void)is_icmp;
+	return (0);
 }

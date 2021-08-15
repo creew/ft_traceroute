@@ -55,12 +55,11 @@ char	*parse_joined_option(int argc, char *const *argv, char *arg, int *i)
 
 static int	parse_options(int argc, char *argv[], char *arg, int *i)
 {
-	int				contin;
 	unsigned long	c;
 
 	c = 0;
-	contin = 0;
-	while (c < sizeof(g_arg_functions) / sizeof(g_arg_functions[0])) {
+	while (c < sizeof(g_arg_functions) / sizeof(g_arg_functions[0]))
+	{
 		if (*arg == g_arg_functions[c].arg)
 			return (g_arg_functions[c].parse_function(argc, argv, arg, i));
 		c++;
@@ -70,7 +69,7 @@ static int	parse_options(int argc, char *argv[], char *arg, int *i)
 		dprintf(2, "ping: invalid option -- '%c'\n", *arg);
 		print_usage(g_ft_traceroute.exec_name, 2);
 	}
-	return (contin);
+	return (0);
 }
 
 int	parse_argv(int argc, char *argv[])

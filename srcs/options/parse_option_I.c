@@ -14,6 +14,10 @@
 
 int	parse_option_I(int argc, char **argv, char *arg, int *i)
 {
+	(void)argc;
+	(void)argv;
+	(void)arg;
+	(void)i;
 	g_ft_traceroute.is_icmp = 1;
 	return (1);
 }

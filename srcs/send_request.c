@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void send_request(int ttl) {
-
+void send_request(int ttl)
+{
+	(void)ttl;
 }

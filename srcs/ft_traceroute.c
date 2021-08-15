@@ -21,11 +21,12 @@ t_ft_traceroute g_ft_traceroute;
 
 void	alrm_handler(int sig)
 {
-
+	(void)sig;
 }
 
 void	int_handler(int sig)
 {
+	(void)sig;
 	exit(0);
 }
 
