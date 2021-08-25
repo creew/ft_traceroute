@@ -44,8 +44,10 @@ void init_traceroute(char *argv[])
 	g_ft_traceroute.number_of_queries = 3;
 	g_ft_traceroute.ttl = 1;
 	g_ft_traceroute.wait_probe_time = 5;
+	g_ft_traceroute.port_number = 33434;
+	g_ft_traceroute.hop = 0;
+	g_ft_traceroute.packet_size = 60;
 }
-
 
 void print_header()
 {
@@ -54,7 +56,7 @@ void print_header()
 	inet_ntop(AF_INET, &g_ft_traceroute.addr_info.sin_addr,
 			  addr, sizeof(addr) - 1);
 	printf("traceroute to %s (%s), %d hops max, %d byte packets\n",
-		   g_ft_traceroute.host, addr, g_ft_traceroute.max_hops, 60);
+		   g_ft_traceroute.host, addr, g_ft_traceroute.max_hops, g_ft_traceroute.packet_size);
 }
 
 int main(int argc, char *argv[])
@@ -71,6 +73,6 @@ int main(int argc, char *argv[])
 	if (signal(SIGINT, int_handler) == SIG_ERR)
 		err_fmt(CANNOT_SET_SIGNAL, "cannot set signal: %d", SIGINT);
 	print_header();
-	send_request(g_ft_traceroute.ttl);
-    return 0;
+	send_request1();
+    return (EXIT_SUCCESS);
 }

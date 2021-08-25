@@ -54,4 +54,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: visu_hex lib ft_printf clean fclean all re
+.PHONY: lib clean fclean all re

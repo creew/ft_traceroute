@@ -14,8 +14,12 @@
 
 int	parse_option_q(int argc, char **argv, char *arg, int *i)
 {
+	char *end;
+
 	arg = parse_joined_option(argc, argv, arg, i);
-	g_ft_traceroute.number_of_queries = (int)ft_strtol(arg, NULL, 10);
+	g_ft_traceroute.number_of_queries = (int)ft_strtol(arg, &end, 10);
+	if (*end != '\0')
+		err_fmt(INVALID_NUMBER_OF_QUERIES, "\"%s\" bad value for nprobes", arg);
 	if (g_ft_traceroute.number_of_queries < 1 ||
 	    g_ft_traceroute.number_of_queries > 10)
 		err_fmt(INVALID_NUMBER_OF_QUERIES,

@@ -10,10 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <errno.h>
+
 #include "ft_traceroute.h"
 
-int init_socket(char is_icmp)
+void	prepare_socket(void)
 {
-	(void)is_icmp;
-	return (0);
+	g_ft_traceroute.recv_sock = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);
+	if (g_ft_traceroute.recv_sock < 0 ) {
+		err_fmt(ERROR_CREATING_SOCKET, "recv socket creation failed %s", strerror(errno));
+	}
+	if (g_ft_traceroute.is_icmp) {
+		g_ft_traceroute.send_sock = g_ft_traceroute.recv_sock;
+	} else {
+		g_ft_traceroute.send_sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+		if (g_ft_traceroute.send_sock < 0 ) {
+			err_fmt(ERROR_CREATING_SOCKET, "send socket creation failed %s", strerror(errno));
+		}
+	}
+}
+
+void	set_ttl() {
+	if (setsockopt(g_ft_traceroute.send_sock, SOL_IP, IP_TTL,
+				   &g_ft_traceroute.ttl, sizeof(g_ft_traceroute.ttl)) != 0)
+	{
+		err_fmt(CANNOT_SET_TTL, "%s: can't set unicast time-to-live: %s",
+				g_ft_traceroute.exec_name, strerror(errno));
+	}
 }

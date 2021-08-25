@@ -14,8 +14,12 @@
 
 int	parse_option_w(int argc, char **argv, char *arg, int *i)
 {
+	char *end;
+
 	arg = parse_joined_option(argc, argv, arg, i);
-	g_ft_traceroute.wait_probe_time = (int)ft_strtol(arg, NULL, 10);
+	g_ft_traceroute.wait_probe_time = (int)ft_strtol(arg, &end, 10);
+	if (*end != '\0')
+		err_fmt(INVALID_NUMBER_OF_QUERIES, "\"%s\" bad value for wait time", arg);
 	if (g_ft_traceroute.wait_probe_time < 0)
 		err_fmt(INVALID_WAIT_PROBE_TIME,
 				"probes time wait out of range");

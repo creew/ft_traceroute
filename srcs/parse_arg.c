@@ -14,19 +14,15 @@
 #include "parse_options.h"
 #include <stdio.h>
 
-typedef struct s_arg_function{
-	char arg;
-	int (*parse_function)(int argc, char *argv[], char *arg, int *i);
-} t_arg_function;
-
 static const t_arg_function g_arg_functions[] = {
-	{'f', parse_option_f},
-	{'h', parse_option_h},
-	{'I', parse_option_I},
-	{'m', parse_option_m},
-	{'q', parse_option_q},
-	{'v', parse_option_v},
-	{'w', parse_option_w}
+	{'f', parse_option_f, "first ttl"},
+	{'h', parse_option_h, "help"},
+	{'I', parse_option_I, "use icmp"},
+	{'m', parse_option_m, "max ttl"},
+	{'p', parse_option_p, "port"},
+	{'q', parse_option_q, "nprobes"},
+	{'v', parse_option_v, "verbose"},
+	{'w', parse_option_w, "wait time"}
 };
 
 char	*parse_joined_option(int argc, char *const *argv, char *arg, int *i)

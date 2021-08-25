@@ -14,8 +14,12 @@
 
 int	parse_option_f(int argc, char **argv, char *arg, int *i)
 {
+	char *end;
+
 	arg = parse_joined_option(argc, argv, arg, i);
-	g_ft_traceroute.ttl = (int)ft_strtol(arg, NULL, 10);
+	g_ft_traceroute.ttl = (int)ft_strtol(arg, &end, 10);
+	if (*end != '\0')
+		err_fmt(INVALID_FIRST_HOP, "\"%s\" bad value for first ttl", arg);
 	if (g_ft_traceroute.ttl < 1)
 		err_fmt(INVALID_FIRST_HOP,
 				"first hop out of range");

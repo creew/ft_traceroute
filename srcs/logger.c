@@ -45,11 +45,11 @@ void	err_fmt(int code, char *fmt, ...)
 	va_end(argptr);
 }
 
-void	err_fmt_usage(char *fmt, char *arg, ...)
+void	err_fmt_usage(char *fmt, ...)
 {
 	va_list	argptr;
 
-	va_start(argptr, arg);
+	va_start(argptr, fmt);
 	vdprintf(2, fmt, argptr);
 	dprintf(2, "\n");
 	va_end(argptr);

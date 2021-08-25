@@ -16,8 +16,6 @@ add_executable(ft_traceroute
         srcs/socket.c
         srcs/ft_traceroute.c
         srcs/get_addr.c
-        srcs/send_icmp.c
-        srcs/send_udp.c
         srcs/options/parse_option_m.c
         srcs/options/parse_option_f.c
         srcs/options/parse_option_q.c
@@ -25,5 +23,7 @@ add_executable(ft_traceroute
         srcs/options/parse_option_h.c
         srcs/options/parse_option_v.c
         srcs/options/parse_option_I.c
-        srcs/send_request.c)
+        srcs/options/parse_option_p.c
+        srcs/send_request.c
+        srcs/utils.c)
 target_link_libraries(ft_traceroute ft)
